@@ -1,501 +1,547 @@
-# INSTAMART CUSTOMER INTELLIGENCE COPILOT
-# OVERVIEW 
-      PART A : DATA FOUNDATION
-      This part works on data cleaning and validation on raw data such as customer,product and order.The cleaned data is stored in a SQLite database and analysed using SQL and pandas. 
-      
-      PART B : CUSTOMER SEGMENTATION AND LAPSE PREDICTION
-      The customer behaviour is analysed using RFM(Recency,Frequency,monetary)metrics,Customers are segmented using K-Means Clustering and lapse prediction model is developed to predict the customers.
+ #🛒 INSTAMART CUSTOMER INTELLIGENCE COPILOT
 
-      Part C : SUPPORT TICKET WITH GUARDRAIL
-      This processes customer support tickets by applying input guardrails and privacy protection techniques.Sensitive information is redacted,tickets are classified into categories and they are routed to appropriate support team.
+An end-to-end Customer Intelligence and Support Copilot combining data engineering, SQL analytics, machine learning, customer segmentation, support ticket automation, Retrieval-Augmented Generation (RAG), and AI agents.
 
-      Part D : POLICY ASSISTANT AND REFUND AGENT
-      Finally Retrieval Augmented Generation(RAG)policy is built to answer the policy related questions using company policy documents.A ReAct style refund agent are built to answer policy questions and automate refund decisions.Escalate cases when human evaluation is required.
-      
-       Together, these four parts creates an end-to-end Customer Intelligence and Support Copilot that combines data clean,machine learning,information retrieval and AI agent workflow. 
+---
 
-# REPRODUCE
+# 📌 PROJECT OVERVIEW
+
+This project is divided into four major parts:
+
+## PART A: DATA FOUNDATION
+
+This part focuses on data cleaning, auditing, and validation of raw customer, product, and order datasets.
+
+**Key Activities:**
+- Data auditing and quality checks.
+- Customer, product, and order data cleaning.
+- Handling missing and invalid values.
+- SQLite database creation.
+- SQL and Pandas-based data analysis.
+
+## PART B: CUSTOMER SEGMENTATION AND LAPSE PREDICTION
+
+Customer purchasing behaviour is analysed using RFM (Recency, Frequency, Monetary) metrics.
+
+**Key Activities:**
+- RFM analysis.
+- Customer segmentation using K-Means clustering.
+- Customer lapse prediction using Logistic Regression and Random Forest.
+- Identification of customers requiring retention campaigns.
+
+## PART C: SUPPORT TICKET TRIAGE WITH GUARDRAILS
+
+This part processes customer support tickets using input guardrails and privacy protection techniques.
+
+**Key Activities:**
+- Input validation and guardrails.
+- Personally Identifiable Information (PII) redaction.
+- Support ticket classification.
+- Automated ticket routing.
+- Human review for sensitive or invalid cases.
+
+## PART D: POLICY ASSISTANT AND REFUND AGENT
+
+A Retrieval-Augmented Generation (RAG) system is developed to answer policy-related questions using company policy documents.
+
+A ReAct-style refund agent is implemented to automate refund decisions.
+
+**Key Activities:**
+- Policy document retrieval.
+- RAG-based question answering.
+- Refund calculation and decision-making.
+- Automated refund processing.
+- Human escalation for complex cases.
+
+## PROJECT SUMMARY
+
+Together, these four parts create an end-to-end Customer Intelligence and Support Copilot combining:
+
+- Data Engineering
+- SQL Analytics
+- Machine Learning
+- Customer Segmentation
+- AI-powered Support Automation
+- Retrieval-Augmented Generation
+- AI Agent Workflows
+
+---
+
+# 🛠️ TECHNOLOGIES USED
+
+- Python
+- Pandas
+- NumPy
+- SQLite
+- SQL
+- Scikit-learn
+- K-Means Clustering
+- Logistic Regression
+- Random Forest
+- TF-IDF
+- Retrieval-Augmented Generation (RAG)
+- AI Agents
+
+---
+
+# 🚀 PROJECT REPRODUCTION
+
 Follow the steps below to reproduce the project results.
-Step 1: Create Virtual Environment
+
+## Step 1: Create Virtual Environment
+
+```bash
 python -m venv .venv
-Step 2: Activate Virtual Environment
-Windows:
+```
+
+## Step 2: Activate Virtual Environment
+
+**Windows:**
+
+```bash
 .venv\Scripts\activate
-Step 3: Install Required Libraries
+```
+
+## Step 3: Install Dependencies
+
+```bash
 pip install -r requirements.txt
-Step 4: Generate Synthetic Data
+```
+
+## Step 4: Generate Synthetic Data
+
+```bash
 python generate_data.py
-Expected output:
-generated: customers=1200 products=40 orders_raw=13084 tickets=164
-Step 5: Audit Raw Data
+```
+
+**Expected Output:**
+
+| Dataset | Records |
+|:---|---:|
+| Customers | 1,200 |
+| Products | 40 |
+| Orders | 13,084 |
+| Tickets | 164 |
+
+## Step 5: Audit Raw Data
+
+```bash
 python src/part_a/audit.py
-Step 6: Clean Customer Data
+```
+
+## Step 6: Clean Customer Data
+
+```bash
 python src/part_a/clean_customers.py
-Step 7: Clean Product Data
+```
+
+## Step 7: Clean Product Data
+
+```bash
 python src/part_a/clean_products.py
-Step 8: Clean Order Data
+```
+
+## Step 8: Clean Order Data
+
+```bash
 python src/part_a/clean_orders.py
-Step 9: Build SQLite Database
+```
+
+## Step 9: Build SQLite Database
+
+```bash
 python src/part_a/build_database.py
-Step 10: Validate Checkpoints
+```
+
+## Step 10: Validate Checkpoints
+
+```bash
 python src/part_a/validate.py
-Expected output:
+```
+
+**Expected Output:**
+
+```text
 ALL CHECKPOINTS PASSED
-Step 11: Run SQL Queries
+```
+
+## Step 11: Run SQL Analysis
+
+```bash
 python src/part_a/run_queries.py
-Step 12: Run Customer Segmentation
+```
+
+## Step 12: Run Customer Segmentation
+
+```bash
 python src/part_b/customer_segmentation.py
-Step 13: Run Lapse Prediction
+```
+
+## Step 13: Run Lapse Prediction
+
+```bash
 python src/part_b/lapse_prediction.py
-Outputs:
-outputs/customer_segmentation.csv
-outputs/lapse_model.joblib
-outputs/retention_list.csv
-Step 14: Run Support Ticket Triage
+```
+
+**Generated Outputs:**
+
+- `outputs/customer_segmentation.csv`
+- `outputs/lapse_model.joblib`
+- `outputs/retention_list.csv`
+
+## Step 14: Run Support Ticket Triage
+
+```bash
 python src/part_c/ticket_triage.py
-Outputs:
-outputs/triage_results.csv
-outputs/triage_budget_demo.csv
-Step 15: Run Policy Assistant and Refund Agent
+```
+
+**Generated Outputs:**
+
+- `outputs/triage_results.csv`
+- `outputs/triage_budget_demo.csv`
+
+## Step 15: Run Policy Assistant and Refund Agent
+
+```bash
 python src/part_d/policy_assistant.py
-Outputs:
-outputs/refund_ledger.jsonl
-outputs/agent_runs.jsonl
+```
 
-# PART A : DATA FOUNDATION
-Data Audit
-The raw datasets were loaded and analysed to identify data quality issues before cleaning.
-Orders Dataset Audit
-Metric	Value
-Raw order rows	13084
-Exact duplicate rows	119
-Pending rows	656
-Distinct order IDs	12309
-Non-numeric order amounts	120
-Negative delivery times	106
-Blank delivery times	2541
-Customers Dataset Audit
-Metric	Value
-Blank ages	61
-Ages outside 10–100	6
-Distinct raw city spellings	24
-Distinct gender spellings	10
-Blank gender values	30
-Customer Data Cleaning
-The following cleaning rules were applied:
-1.Standardised city names by removing extra spaces and applying title case.
-2.Reduced all city values to six valid cities.
-3.Mapped gender spellings into three categories: male, female and unknown.
-4.Treated ages outside the range 10–100 as missing.
-5.Filled missing ages using the median age of each city.
-6.Converted signup_date to datetime format.
-Final Customer Summary
-Gender	Count
-Female	610
-Male	560
-Unknown	30
-All missing ages were successfully imputed and all ages fall between 18 and 60.
-Order Data Cleaning
-The following cleaning steps were applied:
-1.Converted order timestamps to datetime.
-2.Removed exact duplicate rows.
-3.Retained only the latest record for each duplicate order ID.
-4.Converted order_amount to numeric values.
-5.Recalculated missing order amounts using product price, quantity and discount percentage.
-6.Converted negative delivery times to missing values.
-7.Filled missing delivery times for completed orders using category-level median delivery times.
-8.Kept delivery times missing for cancelled orders.
-Final Order Summary
-Metric	Value
-Final order rows	12309
-Completed orders	11110
-Cancelled orders	1199
-Missing order amounts	0
-Missing delivery times (completed)	0
-Missing delivery times (cancelled)	1199
-Completed order revenue	INR 2,998,668.80
-Validation
-The cleaned datasets were validated against the required project checkpoints.
-Result:
+**Generated Outputs:**
+
+- `outputs/refund_ledger.jsonl`
+- `outputs/agent_runs.jsonl`
+
+---
+
+# 📊 PART A: DATA FOUNDATION
+
+## Objective
+
+Build a reliable data foundation by auditing, cleaning, validating, and analysing customer, product, and order datasets.
+
+## 1. Customer Data Cleaning
+
+### Key Cleaning Steps
+
+- Standardised city names.
+- Consolidated city spellings into six valid cities.
+- Normalised gender values.
+- Treated invalid ages as missing.
+- Imputed missing ages using city-level median values.
+- Converted signup dates into datetime format.
+
+### Final Customer Summary
+
+| Gender | Count |
+|:---|---:|
+| Female | 610 |
+| Male | 560 |
+| Unknown | 30 |
+| **Total** | **1,200** |
+
+All missing ages were successfully imputed.
+
+## 2. Order Data Cleaning
+
+### Key Cleaning Steps
+
+- Removed duplicate records.
+- Standardised timestamps.
+- Converted order amounts to numeric values.
+- Recalculated missing order amounts.
+- Corrected invalid delivery times.
+- Imputed missing delivery durations for completed orders.
+
+### Final Order Summary
+
+| Metric | Value |
+|:---|---:|
+| Final Orders | 12,309 |
+| Completed Orders | 11,110 |
+| Cancelled Orders | 1,199 |
+| Missing Order Amounts | 0 |
+| Revenue | ₹2,998,668.80 |
+
+## 3. Data Validation
+
+All required project checkpoints were successfully validated.
+
+**Validation Result:**
+
+```text
 ALL CHECKPOINTS PASSED
-SQL Analysis Results
-Q1 - WHERE and HAVING
-Customers with completed orders above INR 500 and total spend above INR 8000:
-Result: 30 customers
-Q2 - Three-Table Join
-Revenue by city and product category:
-Rows returned: 30
-Total revenue: INR 2,998,668.80
-Highest revenue combination: Bengaluru / Electronics (INR 233,909.45)
-Q3 - Scalar Subquery
-Products priced above average catalogue price:
-Result: 11 products
-Q4 - LEFT JOIN
-Customers without completed orders:
-Result: 25 customers
-Q5 - Common Table Expressions
-Customers whose spend exceeds average customer spend:
-Result: 550 customers
-Average spend: INR 2,552.06
-Q6 - Window Functions
-Top customer by city:
-Bengaluru: C0082 (INR 12,856.20)
-Chennai: C0930 (INR 10,151.40)
-Delhi: C0291 (INR 13,742.60)
-Hyderabad: C0743 (INR 12,730.05)
-Mumbai: C0693 (INR 14,766.55)
-Pune: C0426 (INR 10,377.10)
-Eight rows showed a difference between RANK() and ROW_NUMBER() because tied values receive the same rank while ROW_NUMBER() always assigns unique sequential numbers.
-Q7 - Running Revenue
-Daily revenue rows: 183
-Final cumulative revenue: INR 2,998,668.80
-Pandas Cross-Check
-The SQL revenue totals were verified using pandas pivot tables.
-Examples:
-City	Revenue	Mean Order Amount	Completed Orders
-Bengaluru	INR 523,643.40	INR 276.47	1894
-Mumbai	INR 479,058.50	INR 297.00	1613
-Exploratory Analysis
-The completed order amount distribution is strongly right-skewed.
-Mean: INR 269.91
-Median: INR 135.00
-Skewness: 4.61
-Q1: INR 64.80
-Q3: INR 297.00
-Upper Outlier Fence: INR 645.30
-High Outliers: 897
-The strongest correlation was between order_amount and discount_pct (approximately -0.095). However, correlations of this size are weak and do not imply causation.
+```
 
-# PART B : CUSTOMER SEGMENTATION AND LAPSE PREDICTION
-The objective of Part B was to understand customer purchasing behaviour and identify
-customers who are likely to stop ordering in the future.
-RFM Analysis
-RFM (Recency, Frequency and Monetary) analysis was performed using completed orders.
-RFM Summary
-Metric	Value
-Customers analysed	1175
-Median Recency	19 days
-Minimum Recency	0 days
-Maximum Recency	180 days
-Mean Frequency	9.46
-Maximum Frequency	33
-Mean Monetary Value	INR 2552.06
-Maximum Monetary Value	INR 14766.55
+## 4. SQL Analysis Highlights
 
-Customer Segmentation
-The RFM values were standardised using StandardScaler before clustering.
-K-Means clustering was applied with values of K ranging from 2 to 8.
-After analysing inertia, silhouette scores and business interpretability, K = 4 was selected as the final segmentation model.
-Segment Summary
-The four customer groups were interpreted as:
-Premium Customers
-Frequent Loyal Customers
-Regular Customers
-Dormant Customers
-The segment with the highest monetary value was marked as the Premium segment.
+| Query | Result |
+|:---|---:|
+| Customers spending above ₹8,000 | 30 |
+| Products above average price | 11 |
+| Customers without completed orders | 25 |
+| Customers above average spend | 550 |
 
-Principal Component Analysis (PCA)
-PCA was applied to the scaled RFM values to reduce dimensionality.
-Explained Variance
-Component	Explained Variance
-PC1	0.634
-PC2	0.218
-Total	0.852
-The first two principal components explained approximately 85.2% of the total variance.
+### Revenue Summary
 
-Lapse Prediction
-The objective was to identify customers who were likely to become inactive after the cutoff date of 2025-09-01.
-Cohort Summary
-Metric	Value
-Customers in cohort	1156
-Lapsed customers	443
-Lapse rate	38.32%
-Training rows	924
-Test rows	232
-Features Used
-The model used:
-Recency
-Frequency
-Monetary value
-Average discount percentage
-Cancellation rate
-Average delivery time
-Most frequent product category
-City
-Age
-Gender
-Customer tenure
-Only data before the cutoff date was used to prevent data leakage.
+| Metric | Value |
+|:---|---:|
+| Total Revenue | ₹2,998,668.80 |
 
-Model Training
-Two machine learning models were evaluated:
-Logistic Regression
-Grid Search was performed with:
-C = {0.01, 0.1, 1, 10, 100}
+### Highest Revenue Combination
 
-Random Forest
-Grid Search was performed with:
-max_depth = {3, 5, 8}
-min_samples_leaf = {5, 10, 20}
+| City | Category | Revenue |
+|:---|:---|---:|
+| Bengaluru | Electronics | ₹233,909.45 |
 
-Model Evaluation
-Logistic Regression
-Metric	Value
-Precision	0.655
-Recall	0.809
-F1 Score	0.724
-Random Forest
-Metric	Value
-Precision	0.680
-Recall	0.742
-F1 Score	0.710
+---
 
-Selected Model
-Logistic Regression was selected as the final model because it achieved strong recall while maintaining a competitive F1 score. High recall is important because identifying potential lapsing customers is more valuable than missing them entirely.
+# 🤖 PART B: CUSTOMER SEGMENTATION AND LAPSE PREDICTION
 
-Class Balance Experiment
-To address class imbalance, the minority class was oversampled using random duplication of lapsed customers within the training set.
-Results
-Before balancing:
-Precision = 0.655
-Recall = 0.809
-F1 = 0.724
-After balancing:
-Precision = 0.592
-Recall = 0.944
-F1 = 0.727
-The largest improvement was observed in recall, meaning the model identified a higher proportion of customers at risk of lapsing.
+## Objective
 
-Model Persistence
-The final model was saved using Joblib:
-outputs/lapse_model.joblib
-The saved model was reloaded successfully and produced identical predictions.
+Understand customer purchasing behaviour and identify customers likely to become inactive.
 
-Retention List
-Premium customers from the test set were ranked by predicted lapse probability.
-Output generated:
-outputs/retention_list.csv
-This file contains:
-customer_id
-lapse_probability
-actually_lapsed
-Limitation
-The Premium flag was created using the full observation window and therefore includes information from the lapse evaluation period. For this reason, the retention list should be considered illustrative rather than a leakage-free evaluation
+## 1. RFM Analysis
 
-# Part C : SUPPORT TICKET WITH GUARDRAIL
-The objective of Part C was to build a secure and reliable support ticket triage system. The pipeline applies input guardrails, removes sensitive customer information, classifies support tickets using prompts, validates responses and routes tickets to the appropriate support team.
+RFM metrics were calculated using completed orders.
 
-Input Guardrails
-Before sending any ticket to the model, validation checks were applied.
-Rules:
-Empty tickets were skipped.
-Very long tickets (more than 400 estimated tokens) were not processed and were flagged for review.
-Results
-Status	Count
-Eligible	156
-Skipped Empty	4
-Flagged Long	4
-All long tickets were estimated at 734 tokens.
+| Metric | Value |
+|:---|---:|
+| Customers Analysed | 1,175 |
+| Median Recency | 19 Days |
+| Mean Frequency | 9.46 |
+| Mean Monetary Value | ₹2,552.06 |
 
-Personal Information Redaction
-Sensitive information was removed before model processing using regular expressions.
-The following replacements were applied:
-Email → [EMAIL]
-Phone Number → [PHONE]
-Order ID → [ORDER_ID]
-Redaction Results
-Entity	Count
-Emails	55
-Phones	91
-Order IDs	132
-Total Replacements	278
-Verification checks confirmed that no sensitive information remained after redaction.
-Remaining Sensitive Information
-Entity	Remaining Count
-Emails	0
-Phones	0
-Order IDs	0
+## 2. Customer Segmentation
 
-Prompt Engineering
-Two classification prompts were designed:
-Zero-Shot Prompt
-Contains allowed categories
-Requires JSON output
+K-Means clustering was applied after feature standardisation.
 
-Few-Shot Prompt
-Contains labelled examples
-Includes a fraud classification example
-Requires JSON output
-Allowed categories:
-billing
-delivery
-technical
-fraud
+### Customer Segments
 
-Retry Handling
-The mock language model sometimes generated temporary failures.
-A retry mechanism was implemented using:
-Maximum 3 retries
-Exponential backoff
-Random jitter
-Results
-19 transient failures occurred
-All failures were successfully recovered
-No ticket ended with a permanent error
+1. Premium Customers
+2. Frequent Loyal Customers
+3. Regular Customers
+4. Dormant Customers
 
-Output Validation
-Every model response was validated.
-A response was accepted if:
-It contained valid JSON with an allowed category, or
-The category could be identified through keyword extraction
-Otherwise, the ticket was flagged for human review.
-Validation Results
-Status	Count
-classified_json	135
-classified_keyword	12
-flagged_invalid_output	9
+### PCA Results
 
-Prompt Comparison
-The complete ticket set was processed using both prompts.
-Zero-Shot Results
-Metric	Value
-Classified Tickets	147
-Accuracy	85.7%
-Few-Shot Results
-Metric	Value
-Classified Tickets	147
-Accuracy	100%
-The few-shot prompt used more tokens but produced significantly better classification performance, eliminating classification errors present in the zero-shot approach.
-Token Usage
-Metric	Value
-Total Tokens Used	12052
-Tokens Per Classified Ticket	40.85
-Ticket Routing
-The final routing rules were:
-Human Review
-Applied when:
-skipped_empty
-flagged_long
-flagged_invalid_output
-budget_exhausted
-Priority:
-NORMAL
-Security Team
-Applied when:
-category = fraud
-Priority:
-HIGH
-Premium Desk
-Applied when:
-is_premium = True
-Priority:
-HIGH
+| Component | Explained Variance |
+|:---|---:|
+| PC1 | 63.4% |
+| PC2 | 21.8% |
+| **Total** | **85.2%** |
 
-Support Queue
-All remaining tickets were routed to:
-support_queue
-Priority:
-NORMAL
+The first two principal components explain 85.2% of the total variance.
 
-Outputs Generated
-The following output files were generated:
-outputs/triage_results.csv
-outputs/triage_budget_demo.csv
+## 3. Lapse Prediction
 
-# Part D : POLICY ASSISTANT AND REFUND AGENT
-The objective of Part D was to build a Retrieval-Augmented Generation (RAG) policy assistant and an automated refund agent. The policy assistant retrieves relevant information from company policy documents, while the refund agent uses tools and business rules to process refund requests.
+The following machine learning models were evaluated:
 
-Document Chunking
-The five policy documents were divided into overlapping text chunks to improve retrieval quality.
-Chunk Summary
-Document	Number of Chunks
-refund_policy.txt	4
-delivery_policy.txt	3
-payment_policy.txt	3
-escalation_policy.txt	3
-privacy_policy.txt	2
-Total Chunks Created: 15
+- Logistic Regression
+- Random Forest
 
-Retrieval System
-TF-IDF Vectorization and Cosine Similarity were used to retrieve the most relevant policy chunks for a user query.
-Retrieval Evaluation Results
-Metric	Result
-Expected document found in Top-3 retrieval	12 / 12
-Expected fact found in answer	12 / 12
-Unanswerable questions handled correctly	2 / 2
-The retrieval system successfully identified all required documents and generated correctly grounded answers for every answerable question.
+### Final Model
 
-Policy Assistant
-The policy assistant uses retrieved policy chunks as context and generates answers only from the provided information.
-Example Question:
-What delivery time makes a completed order eligible for a full refund?
-Answer:
-More than 45 minutes.
-Source:
-refund_policy.txt
+**Selected Model: Logistic Regression**
 
-Refund Agent
-A ReAct-style agent was implemented using the following tools:
-get_order()
-search_policy()
-calculate_refund()
-issue_refund()
-escalate_to_human()
-The agent retrieves order details, checks policy rules, calculates refunds, issues refunds when eligible and escalates high-value refunds when human approval is required.
+### Model Performance
 
-Refund Agent Results
-Scenario	Status	Outcome
-S1	REFUND	INR 128.25
-S2	REFUND	INR 135.00
-S3	ESCALATE	INR 1999.00
-S4	DENIED	Delivery within policy limits
-S5	DENIED	Order not eligible
-S6	NOT_FOUND	Order does not exist
-S7	FALLBACK_MAX_ITERATIONS	Human handoff
-Safety and Fallback Mechanisms
-Three safety mechanisms were implemented:
+| Metric | Logistic Regression |
+|:---|---:|
+| Precision | 0.655 |
+| Recall | 0.809 |
+| F1 Score | 0.724 |
 
-Maximum Iteration Protection
-When the agent exceeds the maximum number of allowed reasoning steps:
-FALLBACK_MAX_ITERATIONS
-is returned.
-Token Limit Protection
-When the token limit is exceeded:
-FALLBACK_TOKEN_LIMIT
-is returned.
-Timeout Protection
-When the execution time exceeds the specified limit:
-FALLBACK_TIMEOUT
-is returned.
-Demonstration Results
-Demo	Status
-Token Limit Test	FALLBACK_TOKEN_LIMIT
-Timeout Test	FALLBACK_TIMEOUT
-Generated Outputs
-The following files were generated:
-outputs/agent_runs.jsonl
-outputs/refund_ledger.jsonl
-The state directory stores checkpoint files used for agent recovery and resumption.
-Conclusion
-Part D successfully combines retrieval, reasoning and tool execution into a complete policy assistant and refund automation workflow. The agent follows business rules, retrieves policy information, processes refund requests and safely handles exceptional situations through fallback mechanisms.
+### Generated Outputs
 
-# LIMITATIONS AND NEXT STEPS
+| Output File | Description |
+|:---|:---|
+| `outputs/customer_segmentation.csv` | Customer segment assignments |
+| `outputs/lapse_model.joblib` | Trained lapse prediction model |
+| `outputs/retention_list.csv` | Customer retention list |
 
-The project uses synthetic data generated for learning purposes. Therefore, the results may not fully represent real-world business behaviour.
-Customer segmentation and lapse prediction are based on historical order data. Customer behaviour may change over time, which can affect model performance.
-The Premium customer flag was created using the full observation period. Therefore, the retention list should be considered illustrative rather than a completely leakage-free evaluation.
-The policy assistant uses TF-IDF retrieval, which depends on keyword matching. If two questions have the same meaning but use very different wording, retrieval quality may decrease.
-The project uses the provided offline mock_llm.py file instead of a real production language model.
+---
 
-# NEXT STEPS
+# 🎫 PART C: SUPPORT TICKET TRIAGE WITH GUARDRAILS
 
-Replace TF-IDF retrieval with semantic vector embeddings to improve retrieval accuracy.
-Improve the lapse prediction model by including more behavioural and time-based features.
-Build a dashboard for customer segmentation, retention analysis and support ticket monitoring.
-Deploy the ticket triage system and refund agent as real-time services.
-Integrate the system with actual customer support platforms and databases.
+## Objective
 
-                                     
-# CONCLUSION
+Develop a secure support ticket processing system with safety checks and automated routing.
 
-This project successfully developed an end-to-end Customer Intelligence and Support Copilot. The solution combines data cleaning, SQL analysis, customer segmentation, machine learning, support ticket triage, retrieval-augmented policy search and an automated refund agent into a single workflow. The project demonstrates practical applications of data engineering, machine learning and AI-based automation in customer support and business decision making.
+## 1. Input Guardrails
+
+### Validation Rules
+
+- Skip empty tickets.
+- Flag excessively long tickets.
+- Protect processing budget.
+
+### Guardrail Results
+
+| Status | Count |
+|:---|---:|
+| Eligible | 156 |
+| Skipped Empty | 4 |
+| Flagged Long | 4 |
+| **Total** | **164** |
+
+## 2. PII Redaction
+
+The following sensitive information was removed:
+
+- Email Addresses
+- Phone Numbers
+- Order IDs
+
+### Redaction Results
+
+| Entity | Count |
+|:---|---:|
+| Emails | 55 |
+| Phones | 91 |
+| Order IDs | 132 |
+
+No sensitive data remained after validation.
+
+## 3. Ticket Classification
+
+### Classification Categories
+
+- Billing
+- Delivery
+- Technical
+- Fraud
+
+### Prompt Performance
+
+| Approach | Accuracy |
+|:---|---:|
+| Zero-Shot | 85.7% |
+| Few-Shot | 100% |
+
+## 4. Automated Ticket Routing
+
+| Support Team | Routing Conditions |
+|:---|:---|
+| Security Team | Fraud cases and high-priority tickets |
+| Premium Desk | Premium customers and high-priority tickets |
+| Support Queue | Standard support tickets |
+| Human Review | Empty tickets, long tickets, and invalid model responses |
+
+### Generated Outputs
+
+- `outputs/triage_results.csv`
+- `outputs/triage_budget_demo.csv`
+
+---
+
+# 📚 PART D: POLICY ASSISTANT AND REFUND AGENT
+
+## Objective
+
+Develop a Retrieval-Augmented Generation (RAG) assistant and automated refund agent.
+
+## 1. Document Chunking
+
+Policy documents were divided into smaller chunks to support information retrieval.
+
+| Document | Chunks |
+|:---|---:|
+| refund_policy.txt | 4 |
+| delivery_policy.txt | 3 |
+| payment_policy.txt | 3 |
+| escalation_policy.txt | 3 |
+| privacy_policy.txt | 2 |
+| **Total** | **15** |
+
+## 2. Retrieval Evaluation
+
+| Metric | Result |
+|:---|---:|
+| Expected Document Found | 12 / 12 |
+| Expected Facts Found | 12 / 12 |
+| Unanswerable Questions Handled | 2 / 2 |
+
+The retrieval system successfully retrieved the expected documents and facts during evaluation.
+
+## 3. Refund Agent Tools
+
+The ReAct-style refund agent uses the following tools:
+
+| Tool | Purpose |
+|:---|:---|
+| `get_order()` | Retrieves order information |
+| `search_policy()` | Searches relevant policy documents |
+| `calculate_refund()` | Calculates eligible refund amounts |
+| `issue_refund()` | Processes refunds |
+| `escalate_to_human()` | Escalates cases requiring human evaluation |
+
+## 4. Agent Outcomes
+
+| Scenario | Status |
+|:---|:---|
+| S1 | REFUND |
+| S2 | REFUND |
+| S3 | ESCALATE |
+| S4 | DENIED |
+| S5 | DENIED |
+| S6 | NOT_FOUND |
+| S7 | FALLBACK_MAX_ITERATIONS |
+
+## 5. Safety Mechanisms
+
+The refund agent includes the following safety mechanisms:
+
+- Maximum Iteration Protection
+- Token Limit Protection
+- Timeout Protection
+- Human Escalation for complex cases
+
+### Generated Outputs
+
+- `outputs/agent_runs.jsonl`
+- `outputs/refund_ledger.jsonl`
+
+---
+
+# ⚠️ LIMITATIONS
+
+The project has the following limitations:
+
+1. Uses synthetic data for demonstration purposes.
+2. Customer behaviour may change over time.
+3. TF-IDF retrieval depends on keyword matching.
+4. Uses a mock LLM instead of a production language model.
+5. The retention list should be considered illustrative rather than fully leakage-free.
+
+---
+
+# 🔮 NEXT STEPS
+
+The following improvements can enhance the project further:
+
+- Replace TF-IDF retrieval with semantic vector embeddings.
+- Enhance lapse prediction using behavioural and temporal features.
+- Develop business intelligence dashboards.
+- Deploy ticket triage as a real-time service.
+- Integrate with production databases and customer support platforms.
+
+---
+
+# 🎯 CONCLUSION
+
+This project successfully developed an end-to-end **Instamart Customer Intelligence and Support Copilot**.
+
+The solution combines:
+
+- Data Engineering
+- SQL Analytics
+- Machine Learning
+- Customer Segmentation
+- Support Ticket Automation
+- Retrieval-Augmented Generation (RAG)
+- AI Agent Workflows
+
+The project demonstrates practical applications of modern data science and AI technologies for improving customer retention, automating customer support operations, and supporting business decision-making.
+
+It showcases how multiple data and AI technologies can work together in a unified system to solve real-world business problems.
