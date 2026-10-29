@@ -1,4 +1,4 @@
- #🛒 INSTAMART CUSTOMER INTELLIGENCE COPILOT
+# 🛒 INSTAMART CUSTOMER INTELLIGENCE COPILOT
 
 An end-to-end Customer Intelligence and Support Copilot combining data engineering, SQL analytics, machine learning, customer segmentation, support ticket automation, Retrieval-Augmented Generation (RAG), and AI agents.
 
