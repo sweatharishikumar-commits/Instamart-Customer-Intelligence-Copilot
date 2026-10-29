@@ -1,8 +1,5 @@
-            INSTAMART-CUSTOMER-INTELLIGENCE-COPILOT
-INTRODUCTION  
-    This project develops a Customer Intelligence and Support Copilot for a Swiggy Instamart company which delivers instant groceries.The objective is to transfer raw data into valuable insights and intelligent support solutions.
-    This project works by dividing into four parts 
-
+# INSTAMART CUSTOMER INTELLIGENCE COPILOT
+# OVERVIEW 
       PART A : DATA FOUNDATION
       This part works on data cleaning and validation on raw data such as customer,product and order.The cleaned data is stored in a SQLite database and analysed using SQL and pandas. 
       
@@ -15,10 +12,10 @@ INTRODUCTION
       Part D : POLICY ASSISTANT AND REFUND AGENT
       Finally Retrieval Augmented Generation(RAG)policy is built to answer the policy related questions using company policy documents.A ReAct style refund agent are built to answer policy questions and automate refund decisions.Escalate cases when human evaluation is required.
       
-       Together these four parts creates an end-to-end Customer Intelligence and Support Copilot that combines data clean,machine learning,information retrieval and AI agent workflow. 
-      
-REPRODUCE
-    Follow the steps below to reproduce the project results.
+       Together, these four parts creates an end-to-end Customer Intelligence and Support Copilot that combines data clean,machine learning,information retrieval and AI agent workflow. 
+
+# REPRODUCE
+Follow the steps below to reproduce the project results.
 Step 1: Create Virtual Environment
 python -m venv .venv
 Step 2: Activate Virtual Environment
@@ -65,7 +62,7 @@ Outputs:
 outputs/refund_ledger.jsonl
 outputs/agent_runs.jsonl
 
-Part A Data Foundation
+# PART A : DATA FOUNDATION
 Data Audit
 The raw datasets were loaded and analysed to identify data quality issues before cleaning.
 Orders Dataset Audit
@@ -169,9 +166,9 @@ Upper Outlier Fence: INR 645.30
 High Outliers: 897
 The strongest correlation was between order_amount and discount_pct (approximately -0.095). However, correlations of this size are weak and do not imply causation.
 
-Part B  Customer Segmentation and Lapse Prediction
-     The objective of Part B was to understand customer purchasing behaviour and identify
-     customers who are likely to stop ordering in the future.
+# PART B : CUSTOMER SEGMENTATION AND LAPSE PREDICTION
+The objective of Part B was to understand customer purchasing behaviour and identify
+customers who are likely to stop ordering in the future.
 RFM Analysis
 RFM (Recency, Frequency and Monetary) analysis was performed using completed orders.
 RFM Summary
@@ -285,7 +282,7 @@ actually_lapsed
 Limitation
 The Premium flag was created using the full observation window and therefore includes information from the lapse evaluation period. For this reason, the retention list should be considered illustrative rather than a leakage-free evaluation
 
-Part C Support Ticket Triage with Guardrails
+# Part C : SUPPORT TICKET WITH GUARDRAIL
 The objective of Part C was to build a secure and reliable support ticket triage system. The pipeline applies input guardrails, removes sensitive customer information, classifies support tickets using prompts, validates responses and routes tickets to the appropriate support team.
 
 Input Guardrails
@@ -405,7 +402,7 @@ The following output files were generated:
 outputs/triage_results.csv
 outputs/triage_budget_demo.csv
 
-Part D Policy RAG Assistant and Refund Agent
+# Part D : POLICY ASSISTANT AND REFUND AGENT
 The objective of Part D was to build a Retrieval-Augmented Generation (RAG) policy assistant and an automated refund agent. The policy assistant retrieves relevant information from company policy documents, while the refund agent uses tools and business rules to process refund requests.
 
 Document Chunking
@@ -479,11 +476,10 @@ The following files were generated:
 outputs/agent_runs.jsonl
 outputs/refund_ledger.jsonl
 The state directory stores checkpoint files used for agent recovery and resumption.
-
 Conclusion
 Part D successfully combines retrieval, reasoning and tool execution into a complete policy assistant and refund automation workflow. The agent follows business rules, retrieves policy information, processes refund requests and safely handles exceptional situations through fallback mechanisms.
 
-Limitations
+# LIMITATIONS AND NEXT STEPS
 
 The project uses synthetic data generated for learning purposes. Therefore, the results may not fully represent real-world business behaviour.
 Customer segmentation and lapse prediction are based on historical order data. Customer behaviour may change over time, which can affect model performance.
@@ -491,7 +487,7 @@ The Premium customer flag was created using the full observation period. Therefo
 The policy assistant uses TF-IDF retrieval, which depends on keyword matching. If two questions have the same meaning but use very different wording, retrieval quality may decrease.
 The project uses the provided offline mock_llm.py file instead of a real production language model.
 
-Next Steps
+# NEXT STEPS
 
 Replace TF-IDF retrieval with semantic vector embeddings to improve retrieval accuracy.
 Improve the lapse prediction model by including more behavioural and time-based features.
@@ -499,5 +495,7 @@ Build a dashboard for customer segmentation, retention analysis and support tick
 Deploy the ticket triage system and refund agent as real-time services.
 Integrate the system with actual customer support platforms and databases.
 
-CONCLUSION
+                                     
+# CONCLUSION
+
 This project successfully developed an end-to-end Customer Intelligence and Support Copilot. The solution combines data cleaning, SQL analysis, customer segmentation, machine learning, support ticket triage, retrieval-augmented policy search and an automated refund agent into a single workflow. The project demonstrates practical applications of data engineering, machine learning and AI-based automation in customer support and business decision making.
